@@ -1,91 +1,90 @@
-// paragraphs
-let p1 = document.getElementById("paragraph1")
-let p2 = document.getElementById("paragraph2")
-let p3 = document.getElementById("paragraph3")
+const p1 = document.getElementById("paragraph1")
+const p2 = document.getElementById("paragraph2")
+const p3 = document.getElementById("paragraph3")
 
-// buttons
-let graveyardButton = document.getElementById("graveyardButton")
-let basementButton = document.getElementById("basementButton")
-let castleButton = document.getElementById("castleButton")
+const graveyardButton = document.getElementById("graveyardButton")
+const basementButton = document.getElementById("basementButton")
+const castleButton = document.getElementById("castleButton")
 
-let fightButton = document.getElementById("fightButton")
-let bribeButton = document.getElementById("bribeButton")
-let friendlyButton = document.getElementById("friendlyButton")
-let backButton = document.getElementById("backButton")
+const fightButton = document.getElementById("fightButton")
+const bribeButton = document.getElementById("bribeButton")
+const friendlyButton = document.getElementById("friendlyButton")
+const backButton = document.getElementById("backButton")
 
-let submitGuessButton = document.getElementById("submitGuessButton")
+const submitGuessButton = document.getElementById("submitGuessButton")
 
-// image
-let image = document.getElementById("story-image")
+const image = document.getElementById("story-image")
 
-// input
-let treasureInput = document.getElementById("treasureInput")
+const treasureInput = document.getElementById("treasureInput")
 
-// game starting health
+const healthFill = document.getElementById("health-fill")
+const healthText = document.getElementById("health-text")
+
+let maxHealth = 100
 let health = 100
-let inventory = []
 
-// function to change text
-function changeText(a,b,c){
+function updateHealth() {
+    const percent = (health / maxHealth) * 100
+    healthFill.style.width = percent + "%"
+    healthText.textContent = "Health: " + health
+}
+
+function changeText(a, b, c) {
     p1.textContent = a
     p2.textContent = b
     p3.textContent = c
 }
 
-// function to change image
-function changeImage(file){
+function changeImage(file) {
     image.src = file
 }
 
-// graveyard scene
-function goGraveyard(){
-    changeText(
+function changeScene(a, b, c, img) {
+    changeText(a, b, c)
+    changeImage(img)
+}
+
+function goGraveyard() {
+    changeScene(
         "You walk into the graveyard.",
         "A scary monster appears.",
-        "Will you fight it or bribe it?"
+        "Will you fight it or bribe it?",
+        "graveyard.jpg"
     )
-
-    changeImage("graveyard.jpg")
 }
 
-// basement scene
-function goBasement(){
-    changeText(
+function goBasement() {
+    changeScene(
         "You walk into the dark basement.",
         "A giant dragon is here.",
-        "You could fight it or try to be friendly"
+        "You could fight it or try to be friendly.",
+        "dragon.jpg"
     )
-    changeImage("dragon.jpg")
 }
 
-// castle scene
-function goCastle(){
-    changeText(
+function goCastle() {
+    changeScene(
         "You reach the top of the castle.",
         "A princess is trapped here.",
-        "She may know where the treasure is"
+        "She may know where the treasure is.",
+        "princess.jpg"
     )
-    changeImage("princess.jpg")
 }
 
-// fight the monster
-function fightMonster(){
-
+function fightMonster() {
     health -= 50
+    if (health < 0) health = 0
+    updateHealth()
 
-    changeText(
-        "You try to fight the monster.",
+    changeScene(
+        "You fight the monster!",
         "You lose 50 health.",
-        "you run away."
+        "You escape barely alive.",
+        "monster.jpg"
     )
-    changeImage("monster.jpg")
 }
 
-// bribe the monster
-function bribeMonster(){
-
-    inventory.push("Sword")
-
+function bribeMonster() {
     changeText(
         "You give the monster gold.",
         "The monster lets you pass.",
@@ -93,32 +92,23 @@ function bribeMonster(){
     )
 }
 
-// Be friendly to the dragon
-function friendlyDragon(){
-
-    inventory.push("Dragon Pet")
-
+function friendlyDragon() {
     changeText(
         "You are nice to the dragon.",
-        "The dragon become your new pet.",
-        "This might help later"
+        "The dragon becomes your new pet.",
+        "This might help later."
     )
 }
 
-// check treasure code
-function checkCode(){
-
-    if(treasureInput.value == "1234"){
-
-        changeText(
+function checkCode() {
+    if (treasureInput.value === "1234") {
+        changeScene(
             "The treasure chest opens!",
             "Gold and jewels are everywhere.",
-            "You win!"
+            "You win!",
+            "treasure.jpg"
         )
-
-        changeImage("treasure.jpg")
-    } else{
-
+    } else {
         changeText(
             "Wrong Code.",
             "Look around the castle for clues.",
@@ -126,3 +116,42 @@ function checkCode(){
         )
     }
 }
+
+graveyardButton.addEventListener("click", goGraveyard)
+basementButton.addEventListener("click", goBasement)
+castleButton.addEventListener("click", goCastle)
+
+fightButton.addEventListener("click", fightMonster)
+bribeButton.addEventListener("click", bribeMonster)
+friendlyButton.addEventListener("click", friendlyDragon)
+
+submitGuessButton.addEventListener("click", checkCode)
+
+backButton.addEventListener("click", function () {
+    changeScene(
+        "You return to the entrance.",
+        "The castle is quiet again.",
+        "Choose another path.",
+        "map.jpg"
+    )
+})
+
+image.addEventListener("mouseover", function () {
+    p3.textContent = "Hint: The treasure code might be 1234."
+})
+
+image.addEventListener("mouseout", function () {
+    p3.textContent = ""
+})
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "h") {
+        p2.textContent = "Hint: Try exploring every location."
+    }
+})
+
+setTimeout(function () {
+    console.log("Something might appear soon...")
+}, 3000)
+
+updateHealth()

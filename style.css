@@ -1,31 +1,88 @@
-body{
-    font-family: Arial;
-    text-align:center;
-    background-color:green;
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at center, #3a2a1a, #1b1209);
+    color: #f5e6c8;
+    font-family: 'Cinzel', serif;
 }
 
-#story-image{
-    width:450px;
-    height:auto;
-    margin:20px;
-    border-radius:10px;
+/* Game Title */
+.game-title {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 48px;
+    text-align: center;
+    color: #d4af37;
+    text-shadow: 2px 2px 6px black;
+    margin-top: 20px;
 }
 
-p{
-    font-size:18px;
-    width:60%;
-    margin:auto;
-    padding:5px;
+/* Main Game Container */
+.game-container {
+    width: 900px;
+    margin: auto;
+    padding: 20px;
 }
 
-button{
-    padding:10px;
-    margin:5px;
-    font-size:16px;
-    cursor:pointer;
+/* Medieval Panel */
+.panel {
+    background: linear-gradient(#4a3728, #2e2015);
+    border: 3px solid #8b6a3d;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px black;
 }
 
-input{
-    padding:8px;
-    margin-top:10px;
+/* Text inside panels */
+.panel p {
+    line-height: 1.6;
+}
+
+/* Medieval Buttons */
+button {
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(#b08d57, #7a5a2c);
+    border: 2px solid #5a3d1a;
+    color: #fff6d5;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Button hover */
+button:hover {
+    background: linear-gradient(#d4af37, #8b6a3d);
+    transform: scale(1.05);
+}
+
+/* Inventory grid */
+.inventory {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+/* Inventory slots */
+.slot {
+    background: #2a1c12;
+    border: 2px solid #8b6a3d;
+    height: 60px;
+    border-radius: 5px;
+}
+
+/* Health Bar */
+.health-container{
+    width:300px;
+    height:20px;
+    border:2px solid black;
+    background:#300;
+}
+
+#health-fill{
+    height:100%;
+    width:100%;
+    background:red;
+    transition:width 0.3s;
 }
