@@ -69,7 +69,7 @@ function goCastle() {
         "You reach the top of the castle.",
         "A princess is trapped here.",
         "She may know where the treasure is.",
-        "princess.jpg"
+        "princess.webp"
     )
 }
 
