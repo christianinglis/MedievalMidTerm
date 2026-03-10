@@ -138,6 +138,11 @@ function checkCode() {
     }
 }
 
+function playMusic() {
+  const music = document.getElementById("bgMusic");
+  music.play();
+}
+
 graveyardButton.addEventListener("click", goGraveyard)
 basementButton.addEventListener("click", goBasement)
 castleButton.addEventListener("click", goCastle)
