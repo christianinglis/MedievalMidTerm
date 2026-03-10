@@ -6,8 +6,10 @@ const graveyardButton = document.getElementById("graveyardButton")
 const basementButton = document.getElementById("basementButton")
 const castleButton = document.getElementById("castleButton")
 
-const fightButton = document.getElementById("fightButton")
-const bribeButton = document.getElementById("bribeButton")
+const fightMonsterButton = document.getElementById("fightMonsterButton")
+const fightDragonButton = document.getElementById("fightDragonButton")
+const bribeMonsterButton = document.getElementById("bribeMonsterButton")
+const bribeDragonButton = document.getElementById("bribeDragonButton")
 const friendlyButton = document.getElementById("friendlyButton")
 const backButton = document.getElementById("backButton")
 
@@ -79,8 +81,19 @@ function fightMonster() {
     changeScene(
         "You fight the monster!",
         "You lose 50 health.",
-        "You escape barely alive.",
         "monster.jpg"
+    )
+}
+
+function fightDragon() {
+    health -= 50
+    if (health < 0) health = 0
+    updateHealth()
+
+    changeScene(
+        "You fight the dragon!",
+        "You lose 50 health.",
+        "dragon.jpg"
     )
 }
 
@@ -89,6 +102,14 @@ function bribeMonster() {
         "You give the monster gold.",
         "The monster lets you pass.",
         "You retrieve a sword."
+    )
+}
+
+function bribeDragon() {
+    changeText(
+        "You give the dragon treats.",
+        "The dragon lets you pass.",
+        "You retrieve new armour."
     )
 }
 
@@ -121,11 +142,13 @@ graveyardButton.addEventListener("click", goGraveyard)
 basementButton.addEventListener("click", goBasement)
 castleButton.addEventListener("click", goCastle)
 
-fightButton.addEventListener("click", fightMonster)
-bribeButton.addEventListener("click", bribeMonster)
+fightMonsterButton.addEventListener("click", fightMonster)
+fightDragonButton.addEventListener("click", fightDragon)
+bribeMonsterButton.addEventListener("click", bribeMonster)
+bribeDragonButton.addEventListener("click", bribeDragon)
 friendlyButton.addEventListener("click", friendlyDragon)
 
-submitGuessButton.addEventListener("click", checkCode)
+//submitGuessButton.addEventListener("click", checkCode)
 
 backButton.addEventListener("click", function () {
     changeScene(
