@@ -75,7 +75,7 @@ function goBasement() {
 function goCastle() {
     changeScene(
         "You reach the top of the castle.",
-        "A princess is trapped here.",
+        "Big Justice is trapped here.",
         "She may know where the treasure is.",
         "princess.webp"
     )
@@ -168,8 +168,6 @@ fightDragonButton.addEventListener("click", fightDragon)
 bribeMonsterButton.addEventListener("click", bribeMonster)
 bribeDragonButton.addEventListener("click", bribeDragon)
 friendlyButton.addEventListener("click", friendlyDragon)
-
-submitGuessButton.addEventListener("click", checkCode)
 
 backButton.addEventListener("click", function () {
     changeScene(
