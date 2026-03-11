@@ -1,3 +1,4 @@
+// Link to HTML
 const p1 = document.getElementById("paragraph1")
 const p2 = document.getElementById("paragraph2")
 const p3 = document.getElementById("paragraph3")
@@ -15,6 +16,7 @@ const backButton = document.getElementById("backButton")
 
 const submitGuessButton = document.getElementById("submitGuessButton")
 
+// Link Images
 const image = document.getElementById("story-image")
 
 const treasureInput = document.getElementById("treasureInput")
@@ -22,9 +24,11 @@ const treasureInput = document.getElementById("treasureInput")
 const healthFill = document.getElementById("health-fill")
 const healthText = document.getElementById("health-text")
 
+// Health Bar
 let maxHealth = 100
 let health = 100
 
+// Updates Health
 function updateHealth() {
     const percent = (health / maxHealth) * 100
     healthFill.style.width = percent + "%"
@@ -37,6 +41,7 @@ function changeText(a, b, c) {
     p3.textContent = c
 }
 
+// Changes Image of destination
 function changeImage(file) {
     image.src = file
 }
@@ -46,6 +51,7 @@ function changeScene(a, b, c, img) {
     changeImage(img)
 }
 
+// Graveyard Text
 function goGraveyard() {
     changeScene(
         "You walk into the graveyard.",
@@ -55,6 +61,7 @@ function goGraveyard() {
     )
 }
 
+// Basement Text
 function goBasement() {
     changeScene(
         "You walk into the dark basement.",
@@ -64,6 +71,7 @@ function goBasement() {
     )
 }
 
+// Castle Text
 function goCastle() {
     changeScene(
         "You reach the top of the castle.",
@@ -73,6 +81,7 @@ function goCastle() {
     )
 }
 
+// Fight Monster Text
 function fightMonster() {
     health -= 50
     if (health < 0) health = 0
@@ -85,6 +94,7 @@ function fightMonster() {
     )
 }
 
+// Fight Dragon Text
 function fightDragon() {
     health -= 50
     if (health < 0) health = 0
@@ -97,6 +107,7 @@ function fightDragon() {
     )
 }
 
+// Bribe Monster Text
 function bribeMonster() {
     changeText(
         "You give the monster gold.",
@@ -105,6 +116,7 @@ function bribeMonster() {
     )
 }
 
+// Bribe Dragon Text
 function bribeDragon() {
     changeText(
         "You give the dragon treats.",
@@ -113,6 +125,7 @@ function bribeDragon() {
     )
 }
 
+// Friendly Dragon Function
 function friendlyDragon() {
     changeText(
         "You are nice to the dragon.",
@@ -121,6 +134,7 @@ function friendlyDragon() {
     )
 }
 
+// Checks Code
 function checkCode() {
     if (treasureInput.value === "1234") {
         changeScene(
@@ -138,11 +152,13 @@ function checkCode() {
     }
 }
 
+// Audio Player
 function playMusic() {
   const music = document.getElementById("bgMusic");
   music.play();
 }
 
+// Event Listeners
 graveyardButton.addEventListener("click", goGraveyard)
 basementButton.addEventListener("click", goBasement)
 castleButton.addEventListener("click", goCastle)
@@ -153,7 +169,7 @@ bribeMonsterButton.addEventListener("click", bribeMonster)
 bribeDragonButton.addEventListener("click", bribeDragon)
 friendlyButton.addEventListener("click", friendlyDragon)
 
-//submitGuessButton.addEventListener("click", checkCode)
+submitGuessButton.addEventListener("click", checkCode)
 
 backButton.addEventListener("click", function () {
     changeScene(
